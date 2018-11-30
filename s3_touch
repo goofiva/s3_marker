@@ -11,4 +11,4 @@ touch /tmp/$S3_FILE_NAME
 
 aws s3 cp /tmp/$S3_FILE_NAME "s3://$S3_BUCKET/$S3_FILE_NAME"
 
-rm -rf /tmp/$S3_FILE_NAME
+rm -f /tmp/$S3_FILE_NAME
