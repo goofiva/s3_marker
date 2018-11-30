@@ -1,0 +1,36 @@
+#!/bin/bash
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
+S3_REGION=$1
+S3_BUCKET=$2
+S3_FILE_NAME=$3
+S3_TIMEOUT=$4
+
+SLEEP_INTERVAL=10
+
+echo "Waiting for s3 file..."
+echo -e "  region  $S3_REGION"
+echo -e "  bucket  $S3_BUCKET"
+echo -e "  file    $S3_FILE_NAME"
+echo -e "  timeout $S3_TIMEOUT"
+echo ""
+
+TIME_ELAPSE=0
+while [  $TIME_ELAPSE \< $S3_TIMEOUT ]; do
+  STARTTIME=$(date +%s)
+  $DIR/s3_is_file $S3_REGION $S3_BUCKET $S3_FILE_NAME
+
+  # if the file is found, exit 0
+  if [ $? == 0 ]
+  then
+    exit 0
+  fi
+
+  sleep $SLEEP_INTERVAL
+  ENDTIME=$(date +%s)
+  TIME_PASSED=$(($ENDTIME - $STARTTIME))
+
+  let TIME_ELAPSE=TIME_ELAPSE+$TIME_PASSED
+done
+
+echo "TIMED OUT"
+exit 1

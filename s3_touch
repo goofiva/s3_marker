@@ -1,0 +1,16 @@
+#!/bin/bash
+S3_REGION=$1
+S3_BUCKET=$2
+S3_FILE_NAME=$3
+
+echo "Touching s3 file..."
+echo -e "  region  $S3_REGION"
+echo -e "  bucket  $S3_BUCKET"
+echo -e "  file    $S3_FILE_NAME"
+echo ""
+
+touch /tmp/$S3_FILE_NAME
+
+aws s3 cp /tmp/$S3_FILE_NAME "s3://$S3_BUCKET/$S3_FILE_NAME"
+
+rm -rf /tmp/$S3_FILE_NAME
