@@ -2,6 +2,10 @@
 
 Scripts using aws-cli to create, read, and wait for marker files.
 
+## Perquisites 
+All scripts assume that aws-cli is installed and ready to be used with the proper credentials.
+
+
 ## Commands
 
 ### s3\_is\_file
