@@ -1,10 +1,8 @@
 #!/bin/bash
-S3_REGION=$1
-S3_BUCKET=$2
-S3_FILE_NAME=$3
+S3_BUCKET=$1
+S3_FILE_NAME=$2
 
 echo "Touching s3 file..."
-echo -e "  region  $S3_REGION"
 echo -e "  bucket  $S3_BUCKET"
 echo -e "  file    $S3_FILE_NAME"
 echo ""

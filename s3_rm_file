@@ -1,0 +1,10 @@
+#!/bin/bash
+S3_BUCKET=$1
+S3_FILE_NAME=$2
+
+echo "Removing s3 file..."
+echo -e "  bucket  $S3_BUCKET"
+echo -e "  file    $S3_FILE_NAME"
+echo ""
+
+aws s3 rm "s3://$S3_BUCKET/$S3_FILE_NAME"
